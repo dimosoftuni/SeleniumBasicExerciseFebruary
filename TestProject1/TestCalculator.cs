@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System;
+using OpenQA.Selenium.Interactions;
 
 namespace TestProject1
 {
@@ -16,11 +17,16 @@ namespace TestProject1
         IWebElement calcBtn;
         IWebElement resetBtn;
         IWebElement divResult;
+        ChromeOptions options;
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+
+            // Create object of ChromeDriver
+            options = new ChromeOptions();
+            options.AddArgument("headless");
+            driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Url = "https://calculatorhtml.onrender.com/";
 
